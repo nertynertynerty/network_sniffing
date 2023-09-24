@@ -41,15 +41,15 @@ struct tcpheader {
 	#define TH_FIN 0x01
 	#define TH_SYN 0x02
 	#define TH_RST  0x04
-        	#define TH_PUSH 0x08
-        	#define TH_ACK  0x10
-        	#define TH_URG  0x20
-        	#define TH_ECE  0x40
-        	#define TH_CWR  0x80
-        	#define TH_FLAGS        (TH_FIN|TH_SYN|TH_RST|TH_ACK|TH_URG|TH_ECE|TH_CWR)
-        	unsigned short int th_win;
-        	unsigned short int th_sum;
-        	unsigned short int th_urp;
+        #define TH_PUSH 0x08
+        #define TH_ACK  0x10
+        #define TH_URG  0x20
+        #define TH_ECE  0x40
+        #define TH_CWR  0x80
+        #define TH_FLAGS        (TH_FIN|TH_SYN|TH_RST|TH_ACK|TH_URG|TH_ECE|TH_CWR)
+        unsigned short int th_win;
+        unsigned short int th_sum;
+        unsigned short int th_urp;
 };
 
 #define IP_HL(ip)               (((ip)->ip_vhl) & 0x0f)
@@ -162,13 +162,13 @@ void got_packet(u_char *args, const struct pcap_pkthdr *header,
 		switch(ip->iph_protocol) {                                 
 	        case IPPROTO_TCP:
 			printf("#########################################################################\n");
-        			printf("Protocol: TCP\n");
+        		printf("Protocol: TCP\n");
 			
-        	       		printf("Source MAC Address : %s\n", ether_ntoa((struct ether_addr *)eth->ether_shost)); // Source MAC Address 출력 //
-	                	printf("Destination MAC Address : %s\n", ether_ntoa((struct ether_addr *)eth->ether_dhost)); // Destination MAC Address 출력
+        	       	printf("Source MAC Address : %s\n", ether_ntoa((struct ether_addr *)eth->ether_shost)); // Source MAC Address 출력 //
+	                printf("Destination MAC Address : %s\n", ether_ntoa((struct ether_addr *)eth->ether_dhost)); // Destination MAC Address 출력
 
-        	        		printf("\tSource IP Address : %s\n", inet_ntoa(ip->iph_sourceip)); // Source IP Address 출력 //
-	                	printf("\tDestination IP Address : %s\n", inet_ntoa(ip->iph_destip)); // Destination IP Address 출력 //
+        	        printf("\tSource IP Address : %s\n", inet_ntoa(ip->iph_sourceip)); // Source IP Address 출력 //
+	                printf("\tDestination IP Address : %s\n", inet_ntoa(ip->iph_destip)); // Destination IP Address 출력 //
 
 
 			tcp = (struct tcpheader*)(packet + sizeof(struct ethheader) + sizeof(struct ipheader)); // 패킷의 첫 시작 지점 + Ethernet 크기 + IP 크기 = TCP 시작점 //
